@@ -1,0 +1,45 @@
+#N canvas 0 64 1920 909 10;
+#X obj 138 210 osc/packOSC;
+#X obj 72 253 mrpeach/net/udpsend;
+#X obj 138 137 tgl 15 0 empty empty empty 17 7 0 10 #00fc04 #000000
+#000000 0 1;
+#X obj 709 202 osc/packOSC;
+#X obj 643 245 mrpeach/net/udpsend;
+#X obj 709 129 tgl 15 0 empty empty empty 17 7 0 10 #fc0400 #000000
+#000000 0 1;
+#X text 155 135 <-- ON;
+#X text 730 128 <-- OFF;
+#X msg 138 181 send /sound \$1;
+#X msg 709 173 send /sound \$1;
+#X text 217 55 <-- connect to multicast address;
+#X text 243 95 <-- close connection;
+#X text 236 180 <-- prepare OSC message;
+#X text 213 210 <-- convert Pure Data to OSC;
+#X text 199 250 <-- send data via network \, in UDP packet \, using
+mrpeach library;
+#X text 787 42 <-- connect to multicast addres;
+#X text 812 66 <-- close connection;
+#X text 797 172 <-- prepare OSC message;
+#X text 783 202 <-- convert Pure Data to OSC;
+#X text 765 245 <-- send data via network \, in UDP packet \, using
+mrpeach library;
+#X floatatom 72 292 5 0 1 0 - - - 0;
+#X text 109 291 <-- connection status;
+#X floatatom 643 294 5 0 1 0 - - - 0;
+#X text 680 295 <-- connection status;
+#X msg 70 57 connect 224.0.0.0 40020;
+#X msg 81 94 disconnect 224.0.0.0 40020;
+#X msg 643 44 connect 224.0.0.0 40021;
+#X msg 651 68 disconnect 224.0.0.0 40021;
+#X connect 0 0 1 0;
+#X connect 1 0 20 0;
+#X connect 2 0 8 0;
+#X connect 3 0 4 0;
+#X connect 4 0 22 0;
+#X connect 5 0 9 0;
+#X connect 8 0 0 0;
+#X connect 9 0 3 0;
+#X connect 24 0 1 0;
+#X connect 25 0 1 0;
+#X connect 26 0 4 0;
+#X connect 27 0 4 0;

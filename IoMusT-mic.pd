@@ -1,0 +1,64 @@
+#N canvas 671 35 1024 507 10;
+#X floatatom 299 507 0 0 0 0 - - - 0;
+#X obj 837 408 adc~;
+#X obj 767 276 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 #00fc04
+#000000 #000000 0 1;
+#X obj 764 200 osc/unpackOSC;
+#X obj 764 245 osc/routeOSC /volume;
+#X obj 299 63 osc/unpackOSC;
+#X obj 299 174 tgl 15 0 empty empty empty 17 7 0 10 #00fc04 #000000
+#000000 0 1;
+#X obj 299 90 osc/routeOSC /mic;
+#X obj 53 63 osc/unpackOSC;
+#X obj 53 97 osc/routeOSC /mic;
+#X obj 53 186 tgl 15 0 empty empty empty 17 7 0 10 #fc0400 #000000
+#000000 0 1;
+#X obj 299 482 mrpeach/net/udpsend~ 2;
+#X text 326 446 <-- Audio input;
+#X text 442 479 <-- send audio via Network in a UDP socket \, using
+mrpeach library;
+#X text 323 508 <-- connection status;
+#X text 316 173 <-- ON;
+#X text 534 39 <-- Receive OSC message;
+#X text 382 62 <-- convert OSC message to Pure Data;
+#X text 904 276 <-- Volume vslider (0 - 127);
+#X text 889 244 <-- Receive data from 'volume' variable;
+#X text 5 186 OFF -->;
+#X obj 764 174 mrpeach/net/udpreceive 224.0.0.0 40000;
+#X obj 300 440 *~;
+#X obj 888 425 rev2~ 100 90 3000 20;
+#X floatatom 946 407 5 0 300 0 - - - 0;
+#X text 1089 378 <-- Reverb;
+#X obj 949 378 hsl 128 15 0 300 0 0 empty empty empty -2 -8 0 10 #0400fc
+#000000 #000000 0 1;
+#X obj 946 327 osc/unpackOSC;
+#X obj 946 304 mrpeach/net/udpreceive 224.0.0.0 41414;
+#X obj 946 354 osc/routeOSC /reverb;
+#X obj 298 40 mrpeach/net/udpreceive localhost 40030;
+#X obj 53 40 mrpeach/net/udpreceive localhost 40031;
+#X text 485 202 <-- close connection;
+#X msg 299 131 connect 10.0.0.2 3000;
+#X msg 299 202 disconnect 10.0.0.2 3000;
+#X connect 1 0 23 0;
+#X connect 2 0 22 1;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
+#X connect 5 0 7 0;
+#X connect 6 0 33 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 34 0;
+#X connect 11 0 0 0;
+#X connect 21 0 3 0;
+#X connect 22 0 11 0;
+#X connect 23 0 22 0;
+#X connect 24 0 23 2;
+#X connect 26 0 24 0;
+#X connect 27 0 29 0;
+#X connect 28 0 27 0;
+#X connect 29 0 26 0;
+#X connect 30 0 5 0;
+#X connect 31 0 8 0;
+#X connect 33 0 11 0;
+#X connect 34 0 11 0;
